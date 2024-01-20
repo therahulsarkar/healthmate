@@ -13,7 +13,6 @@ const Login = () => {
 
   // Loading state
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
 
 
