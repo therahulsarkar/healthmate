@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="relative z-10 font-pop  bg-gradient-to-r from-blue-700 via-sky-600 to-sky-700 w-full p-6">
+      <footer className="width-full relative z-10 font-pop  bg-gradient-to-r from-blue-700 via-sky-600 to-sky-700 p-6">
         <div className="container  w-full flex justify-center items-center">
           <div className="-mx-4 flex ">
             <div className="w-full ">

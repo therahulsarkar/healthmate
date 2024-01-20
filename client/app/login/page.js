@@ -8,6 +8,7 @@ import CryptoJS from 'crypto-js';
 
 const Login = () => {
 
+  
   const notify = (msg) => toast.error(msg);
   const notifySuccess = (msg) => toast.success(msg);
 
@@ -32,8 +33,10 @@ async function googleSignIn() {
                 email: result.user.email,
               };
 
+            console.log(userData)
             const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(userData), 'secret key 123').toString();
             localStorage.setItem('user', ciphertext);
+
             return true;
         } else {
           throw new Error("Access denied. Your email does not match xyz@gmail.com.");
@@ -57,7 +60,9 @@ async function googleSignIn() {
         return;
       } else {
         notifySuccess("Congratulations! 🎉 Your login was successful");
-        return router.push("/");
+        window.location.href = '/';
+        return;
+        
       }
     } catch (error) {
       notify("Login failed, Please try again");
