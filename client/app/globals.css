@@ -329,3 +329,7 @@ button:hover {
 
 
   /* Query */
+
+  .width-full{
+    width:100vw;
+  }

@@ -13,12 +13,19 @@ const auth = getAuth(firebase_app);
 
 const router = useRouter();
 
+useEffect(() => {
+  
+  router.refresh();
+
+}, []);
+
 const logout = async () => {
   try {
+    console.log("logging out")
     await signOut(auth);
     localStorage.removeItem('user');
     setUser(null);
-    router.push('/')
+    return router.push('/')
   } catch (error) {
     console.error('Error signing out: ', error);
   }
@@ -26,11 +33,17 @@ const logout = async () => {
 
   useEffect(() => {
     const ciphertext = localStorage.getItem('user');
+
+   
+    console.log(ciphertext)
     if (ciphertext) {
       const bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
       const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      console.log(decryptedData)
       setUser(decryptedData);
+
     }
+    
   }, []);
 
   return (
@@ -47,7 +60,7 @@ const logout = async () => {
             </div>
             <div className=" sm:flex lg:pr-0">
              
-            {user ? <div className="font-pop flex flex-row justify-center items-center gap-2">Welcome, {user?.name}
+            {user && user.uid ? <div className="font-pop flex flex-row justify-center items-center gap-2">Welcome, {user?.name}
             <img className="rounded-full w-8 h-8" src={user?.img}/>
             
             <div onClick={logout} className="flex gap-1  flex-row bg-gradient-to-r from-blue-700 via-sky-600 to-sky-700 text-white p-1 justify-center items-center rounded-full px-2 cursor-pointer">Logout
