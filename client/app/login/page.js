@@ -26,10 +26,12 @@ async function googleSignIn() {
       result = await signInWithPopup(auth, googleProvider);
   
       if (result.user) {
-        if (result.user.email === "thecoderrahul@gmail.com" || result.user.email === "thepheras@gmail.com") {
+        if (result.user) {
+            console.log(result.user);
+            
             const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(result.user), 'secret key 123').toString();
             // Store the encrypted data in local storage
-            localStorage.setItem('admin', ciphertext);
+            localStorage.setItem('user', ciphertext);
             return true;
         } else {
           throw new Error("Access denied. Your email does not match xyz@gmail.com.");
@@ -54,7 +56,7 @@ async function googleSignIn() {
         return;
       } else {
         notifySuccess("Congratulations! 🎉 Your login was successful");
-        return router.push("/admin");
+        return router.push("/");
       }
     } catch (error) {
       notify("Login failed, Please try again");
