@@ -24,17 +24,20 @@ async function googleSignIn() {
       error = null;
     try {
       result = await signInWithPopup(auth, googleProvider);
-  
-      if (result.user) {
-        if (result.user.email === "thecoderrahul@gmail.com" || result.user.email === "thepheras@gmail.com") {
-            const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(result.user), 'secret key 123').toString();
-            // Store the encrypted data in local storage
-            localStorage.setItem('admin', ciphertext);
+        if (result.user) {
+            const userData = {
+                uid: result.user.uid,
+                name: result.user.displayName,
+                img: result.user.photoURL,
+                email: result.user.email,
+              };
+
+            const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(userData), 'secret key 123').toString();
+            localStorage.setItem('user', ciphertext);
             return true;
         } else {
           throw new Error("Access denied. Your email does not match xyz@gmail.com.");
         }
-      }
     } catch (e) {
       error = e;
     }
@@ -54,7 +57,7 @@ async function googleSignIn() {
         return;
       } else {
         notifySuccess("Congratulations! 🎉 Your login was successful");
-        return router.push("/admin");
+        return router.push("/");
       }
     } catch (error) {
       notify("Login failed, Please try again");
@@ -69,7 +72,7 @@ async function googleSignIn() {
      
       <Toaster position="top-center" />
 
-      <div className="container px-5 mx-auto py-10 flex font-pop justify-center">
+      <div className="container px-5 mx-auto py-10 flex font-pop justify-center mt-[5rem]">
         <div className="max-w-xl mt-0 mb-10 xl:px-8 pt-20 sm:pt-12">
           <div className="rounded-xl shadow-2xl p-7 sm:p-10 ">
             <h3 className="mb-2 text-2xl font-semibold text-center sm:mb-[2rem] sm:text-2xl text-blue-600 ">

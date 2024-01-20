@@ -25,3 +25,261 @@ body {
     text-wrap: balance;
   }
 }
+
+
+/* Dementia Css start */
+
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  text-align: center;
+
+}
+
+body{
+  font-family:  Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+.prediction-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.image-container img {
+  margin-left: 0px;
+  width: 500px;
+  height: 400px;
+}
+
+.image-container .color img,
+.image-container .blackwhite img {
+  width: 100%;
+  border-radius: 5px;
+  filter: grayscale(100%);
+}
+
+.prediction-form-container {
+  width:40%;
+  margin: auto;
+  padding: 20px;
+  border :1px solid skyblue;
+  /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; */
+  box-shadow:rgb(46, 185, 239) 0px 0px 5px;
+}
+
+.result p {
+  text-align: center;
+}
+
+.result span {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.prediction-form {
+  display: grid;
+  width:50%;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  padding:1%;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input {
+ 
+  border-bottom : 2px solid skyblue;
+  padding: 8px;
+  margin-bottom: 10px;
+  outline:none;
+  text-decoration: none;
+  
+}
+input:focus{
+  border-bottom : 3px solid skyblue;
+}
+
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.disclaimer p{
+  font-size: 15px;
+  padding: 0 15px;
+}
+
+table {
+/*            width: 100%;*/
+            margin: 20px auto;
+            border-collapse: collapse;
+/*            background-color: #fff;*/
+              box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+            border-radius: 0px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid gray;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+/*            background-color: #f2f2f2;*/
+            font-weight: bold;
+        }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 15px;
+  font-size: 25px;
+  text-align: center;
+  box-shadow: #1c1c1c 0px 0px 2px;
+
+}
+
+.avatar img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.name-container {
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  animation :glow 2s infinite ease-in-out;
+  
+}
+
+@keyframes glow{
+  0%{
+    color: #8389ff;
+  }
+  50%{
+    text-shadow: #535bf2 0px 0px 3px;
+    color: #2e316f;
+  }
+  100%{
+    color: #8389ff;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  body{
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .prediction-container {
+    flex-direction: column;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+
+  .prediction-form-container {
+    max-width: 100%;
+    margin-top: 25px;
+  }
+  input {
+  padding: 8px;
+  margin-bottom: 10px;
+  width: 130px;
+}
+
+.image-container img {
+  margin-left: 0px;
+ /* width: 400px;
+  height: 300px;*/
+}
+.info{
+  padding: 0 15px;
+}
+
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+
+
+#load{
+  display:none;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Dementia Css end */
