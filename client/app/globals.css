@@ -283,3 +283,49 @@ button:hover {
 }
 
 /* Dementia Css end */
+
+/* Query  */
+
+.cont{
+  width: 100vw;
+  height:80vw;
+ display: flex;
+ justify-content: center;
+
+}
+
+.post_bar_div{
+  display:flex;
+
+  
+ 
+}
+
+.post_bar{
+  border:none;
+  border-bottom:2px solid rgb(226, 94, 94);
+  width:50vw;
+
+
+}
+.post_bar:focus{
+  border-bottom:2px solid rgb(226, 94, 94);
+}
+
+
+
+.submit-bar{
+  display: flex;
+  align-items: center;
+  gap:5%;
+  margin:10%;
+}
+
+.error{
+  display:none;
+}
+
+
+
+
+  /* Query */
