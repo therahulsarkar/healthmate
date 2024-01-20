@@ -125,36 +125,57 @@ export default function rooms(){
 
     return(
         <div className="flex flex-col items-center justify-center min-h-screen">
-            <h1>Rooms</h1>
-            <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-            {myStream && <button onClick={sendStreams} className="bg-green-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">Send Stream</button>}
-            {remoteSocketId && <button onClick={handleCallUser} className="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">CALL</button>}
-            {myStream && (
-                <>
-                <h1>My Stream</h1>
-                <ReactPlayer
-                    playing
-                    muted
-                    height="300px"
-                    width="300px"
-                    url={myStream}
-                />
-                </>
-            )}
-            {myStream && (
-                <>
-                <h1>remote Stream</h1>
-                <ReactPlayer
-                    playing
-                    muted
-                    height="300px"
-                    width="300px"
-                    url={remoteStream}
-                />
-                </>
-            )}
-            
-        </div>
-        
+      <h1 className="text-3xl font-bold mb-4">Rooms</h1>
+      <h4>{remoteSocketId ? 'Connected' : 'No one in room'}</h4>
+
+      <div className="flex flex-col md:flex-row items-center mt-8 space-y-4 md:space-y-0">
+        {myStream && (
+          <div className="md:mr-4">
+            <h2 className="text-xl font-bold mb-2">My Stream</h2>
+            <ReactPlayer
+              playing
+              muted
+              height="100%"
+              width="100%"
+              style={{ borderRadius: '8px' }} // Add some border radius for styling
+              url={myStream}
+            />
+          </div>
+        )}
+
+        {remoteStream && (
+          <div>
+            <h2 className="text-xl font-bold mb-2">Remote Stream</h2>
+            <ReactPlayer
+              playing
+              muted
+              height="100%"
+              width="100%"
+              style={{ borderRadius: '8px' }}
+              url={remoteStream}
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="flex mt-8 space-x-4">
+        {myStream && (
+          <button
+            onClick={sendStreams}
+            className="bg-green-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Send Stream
+          </button>
+        )}
+        {remoteSocketId && (
+          <button
+            onClick={handleCallUser}
+            className="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            CALL
+          </button>
+        )}
+      </div>
+    </div>
     )
 }

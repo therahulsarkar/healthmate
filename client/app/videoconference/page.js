@@ -28,7 +28,10 @@ const VideoConference = () => {
 
   const handleJoinRoom = useCallback((data)=>{
     const {email, roomNumber} = data;
-    router.push(`videoconference/room/${roomNumber}`)
+    if(localStorage.getItem("type")=="pat")
+      router.push(`videoconference/room/${roomNumber}`)
+    else
+    router.push(`videoconference/doc`)
     //console.log("routing to : ",roomNumber)
   }, [])
   
