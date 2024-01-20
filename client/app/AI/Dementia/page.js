@@ -112,8 +112,8 @@ const App = () => {
   <div>
     
    
-      <div className = "navbar">
-      <p className='text-blue-600 font-pop'>Empowering Tomorrow: Your Ally in Alzheimer's Prediction and Prevention.</p>
+      <div className = "w-screen flex justify-center item-center textcenter mt-[90px]">
+      <p className='text-blue-600 text-4xl  font-pop'>Empowering Tomorrow: Your Ally in Alzheimer's Prediction and Prevention.</p>
 
       </div>
     <div className="prediction-container font-pop">
