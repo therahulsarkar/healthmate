@@ -1,9 +1,10 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import axios from "axios"
-
+import CryptoJS from 'crypto-js';
+import { useRouter } from "next/navigation";
 const Diabetes = () => {
-
+  
   const [Result, setResult] = useState({})
   const [loading, setLoading] = useState(false)
   const [verdict, setVerdict] = useState("Your Verdict Here!!!")
@@ -17,7 +18,20 @@ const Diabetes = () => {
   const [physactivity, setPhysactivity] = useState();
   const [gender, setGender] = useState();
   const url = "https://diabetes-api-j3ba.onrender.com/api"
-
+  
+  const router = useRouter();
+  useEffect(() => {
+   
+    const ciphertext = localStorage.getItem("user");
+    if (ciphertext) {
+      const bytes = CryptoJS.AES.decrypt(ciphertext, "secret key 123");
+      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+     
+    } else{
+      return router.push("/login")
+    }
+  }, []);
+   
   const checkVerdict = (value) => {
     if (value == 0) {
       setVerdict("You're Good and Safe")

@@ -1,10 +1,20 @@
 "use client"
-import React, { useState } from 'react';
-
+import React, { useState,useEffect } from 'react';
+import CryptoJS from 'crypto-js';
+import { useRouter } from "next/navigation";
 // import logo from './assets/logo.png'
 const App = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const ciphertext = localStorage.getItem("user");
+    if (ciphertext) {
+      const bytes = CryptoJS.AES.decrypt(ciphertext, "secret key 123");
+      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
-
+    } else{
+      return router.push("/login")
+    }
+  }, []);
   const [formData, setFormData] = useState({
     'M/F': '',
     'Age': '',  
