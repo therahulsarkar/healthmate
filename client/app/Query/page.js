@@ -126,7 +126,7 @@ const Query = () => {
 
                 <div>
                   <h2 className="text-blue-800 text-sm">{post.username}</h2>
-                  <p>{post.post}</p>
+                  <p className="max-w-xl">{post.post}</p>
                   <div className="flex flex-row justify-center items-center gap-4">
                     {/* <input className="border-2 border-gray-300 h-6 w-[400px] mt-2" /> <button className="h-6 w-20 flex justify-center items-center text-xs ">Comment</button>  */}
                   </div>
