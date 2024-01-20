@@ -1,9 +1,10 @@
 "use client"
 import React, { useState } from 'react';
-// import brain from './assets/brain.png';
+
 // import logo from './assets/logo.png'
-import Header from '@/Components/Header';
 const App = () => {
+
+
   const [formData, setFormData] = useState({
     'M/F': '',
     'Age': '',  
@@ -67,7 +68,9 @@ const App = () => {
     if (!validateInputs()) {
       return;
     }
+   document.getElementById("load").style.display = "block";
 
+  
     try {
       const numericFormData = Object.fromEntries(
         Object.entries(formData).map(([key, value]) => [key, Number(value)])
@@ -88,6 +91,9 @@ const App = () => {
       const result = await response.json();
       setPredictionResult(result);
       setColorImage(result.probability > 0.5);
+      document.getElementById("load").style.display = "none";
+      
+      
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -106,8 +112,8 @@ const App = () => {
   <div>
     
    
-      <div className = "header">
-      <p className='text-blue-500 font-pop'>NeuroInsight</p>
+      <div className = "navbar">
+      <p className='text-blue-600 font-pop'>Empowering Tomorrow: Your Ally in Alzheimer's Prediction and Prevention.</p>
 
       </div>
     <div className="prediction-container font-pop">
@@ -126,8 +132,8 @@ const App = () => {
               />
             </div>
           ))}
-          <button className='bg-blue-400 font-pop' type="submit">Predict</button>
-           <button className='bg-blue-400 font-pop' type="button" onClick={fillRandomData}>
+          <button className='bg-gradient-to-r from-blue-700 to-sky-600 font-pop' type="submit">Predict</button>
+           <button className='bg-gradient-to-r from-blue-700 to-sky-600 font-pop' type="button" onClick={fillRandomData}>
               Fill Random Data
             </button>
         </form>
@@ -137,21 +143,21 @@ const App = () => {
 
       <div className={`image-container`}>
       
-        {/* <img
-          src={brain}
+        <img
+          src="/brain.png"
           alt="Prediction Result"
           style={imageStyle} 
-        /> */}
+        />
         {predictionResult && (
           <div className="result">
             
-            {/*<p>Prediction: {predictionResult.prediction}</p>*/}
-            <p>Probability of developing Alzheimer's : <span style={textStyle}> {(predictionResult.probability * 100).toFixed(2)}%</span></p>
+            <p id="prob">Probability of developing Alzheimer's : <span style={textStyle}> {(predictionResult.probability * 100).toFixed(2)}%</span></p>
           </div>
         )}
+        <h2 id="load" className="text-blue-600 font-pop">Loading....</h2>
       </div>
     </div>
-    <div className="disclaimer">
+    <div className="disclaimer font-pop">
 
       <p>
 
@@ -160,7 +166,7 @@ Disclaimer:
 The predictions provided by this Alzheimer's prediction model are based on a machine learning algorithm trained on a limited dataset. It is essential to understand that the model's accuracy and reliability may vary, and the predictions should not be considered as a definitive diagnosis.</p>
     <p>For queries contact <a  href="mailto:therahulsarkar@gmail.com"> Rahul</a></p>
     </div>
-    <div className="info">
+    <div className="info font-pop">
     <table>
         <tr>
             <th>Parameter</th>
