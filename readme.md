@@ -42,3 +42,5 @@
     9. Joblib
     10. Pandas
     11. Numpy
+    12. Crypto.js
+    
