@@ -33,6 +33,7 @@ async function googleSignIn() {
                 email: result.user.email,
               };
 
+            console.log(userData)
             const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(userData), 'secret key 123').toString();
             localStorage.setItem('user', ciphertext);
 
