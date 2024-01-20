@@ -24,7 +24,7 @@ const Diabetes = () => {
     } else if (value == 1) {
       setVerdict("You're prone to Diabetes")
     } else {
-      setVerdict("You have high diabetes")
+      setVerdict("You have diabetes, go & consult to a doctor")
     }
     setLoading(false)
   }
@@ -87,9 +87,9 @@ const Diabetes = () => {
   return (
 <>
 
-    <div className='max-w-full w-screen flex justify-center items-center bg-slate-100'>
-      <div className='max-w-full  font-bold mt-[100px] rounded-2xl shadow-xl bg-white mt-7 mb-10'>
-        <h1 className='font-bold text-blue-500 text-4xl text-center m-10'>Diabetes Detection</h1>
+    <div className='max-w-full w-screen flex justify-center items-center font-pop bg-slate-100'>
+      <div className='max-w-full  font-bold mt-[100px] rounded-2xl shadow-xl bg-white  mb-10'>
+        <h1 className='font-semibold text-blue-700 text-4xl text-center m-10'>Diabetes Detection</h1>
         <div className='flex gap-4 '>
           <div className='m-10'>
             <h6 className='text-gray-700 font-pop'>High Blood Pressure</h6>
