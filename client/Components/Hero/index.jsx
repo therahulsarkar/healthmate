@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const Hero = () => {
   return (
     <>
-      <Navbar />
+
       <div className="relative bg-white pb-[110px] pt-[120px] dark:bg-dark lg:pt-[150px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -52,59 +52,6 @@ const SingleImage = ({ href, imgSrc }) => {
   );
 };
 
-const Navbar = () => {
-  const [open, setOpen] = useState(false);
 
-  return (
-    <header className={`absolute left-0 top-0 z-20 flex w-full items-center  shadow-lg shadow-blue-100`}>
-      <div className="container">
-        <div className="relative -mx-4 flex items-center justify-between">
-          <div className=" w-full px-4">
-            <a href="/#" className="block w-full py-5 font-pop text-2xl px-4 font-semibold text-blue-800">
-    Health Mate
-            </a>
-          </div>
-          <div className="flex w-full items-center justify-between px-4">
-            <div className="text-black">
-              
-              <nav
-                id="navbarCollapse"
-                
-              >
-                <ul className="block lg:flex text-black">
-                  <ListItem NavLink="/#">Home</ListItem>
-                  <ListItem NavLink="/#">Payment</ListItem>
-                  <ListItem NavLink="/#">About</ListItem>
-                  <ListItem NavLink="/#">Blog</ListItem>
-                </ul>
-              </nav>
-            </div>
-            <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
-              <a
-                href="/#"
-                className="px-7 py-3  text-base font-medium text-dark hover:text-primary "
-              >
-                Sign in
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-  );
-};
 
-const ListItem = ({ children, NavLink }) => {
-  return (
-    <>
-      <li>
-        <a
-          href={NavLink}
-          className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex"
-        >
-          {children}
-        </a>
-      </li>
-    </>
-  );
-};
+
