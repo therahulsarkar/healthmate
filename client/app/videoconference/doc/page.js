@@ -3,13 +3,27 @@ import { useSocket } from "@/context/socketProvider"
 import { useEffect, useCallback, useState } from "react";
 import peer from "@/service/peer";
 import ReactPlayer from "react-player";
+import Link from 'next/link';
+import CryptoJS from "crypto-js";
 
-export default function rooms(){
+export default function roomsDoc(){
 
     const socket = useSocket();
     const [remoteSocketId, setRemoteSocketId] = useState(null)
     const [myStream, setMyStream] = useState()
     const [remoteStream, setRemoteStream] = useState();
+    const [user, setUser] = useState(null);
+
+
+    useEffect(() => {
+        const ciphertext = localStorage.getItem('user');
+        if (ciphertext) {
+          const bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+          const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+          setUser(decryptedData);
+        }
+      }, []);
+
     
     const handleUserJoined = useCallback(({email, id})=> {
         console.log(`email ${email} joined room`)
@@ -124,58 +138,53 @@ export default function rooms(){
         handleNegoNeedFinal,])
 
     return(
-        <div className="flex flex-col items-center justify-center min-w-screen w-screen">
-      <h1 className="text-3xl font-bold mb-4">Rooms</h1>
-      <h4>{remoteSocketId ? 'Connected' : 'No one in room'}</h4>
-
-      <div className="flex flex-col md:flex-row items-center mt-8 space-y-4 md:space-y-0">
-        {myStream && (
-          <div className="md:mr-4">
-            <h2 className="text-xl font-bold mb-2">My Stream</h2>
-            <ReactPlayer
-              playing
-              muted
-              height="100%"
-              width="100%"
-              style={{ borderRadius: '8px' }} // Add some border radius for styling
-              url={myStream}
-            />
-          </div>
-        )}
-
-        {remoteStream && (
-          <div>
-            <h2 className="text-xl font-bold mb-2">Remote Stream</h2>
-            <ReactPlayer
-              playing
-              muted
-              height="100%"
-              width="100%"
-              style={{ borderRadius: '8px' }}
-              url={remoteStream}
-            />
-          </div>
-        )}
+        <div className="font-pop">
+        
+            {user ? (<div className="flex flex-col items-center justify-center w-screen m-w-screen">
+            <h1 className="text-3xl font-bold mb-4">Rooms</h1>
+           <h4 className="text-center text-lg text-gray-600 mb-8 mt-4">
+               {remoteSocketId ? 'Connected' : 'No one in room waiting for patient to join'}
+           </h4>
+           {myStream && <button onClick={sendStreams} className="bg-green-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">Send Stream</button>}
+           {remoteSocketId && <button onClick={handleCallUser} className="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">CALL</button>}
+           {myStream && (
+               <>
+               <h1>My Stream</h1>
+               <ReactPlayer
+                   playing
+                   muted
+                   height="300px"
+                   width="300px"
+                   url={myStream}
+               />
+               </>
+           )}
+           {myStream && (
+               <>
+               <h1>remote Stream</h1>
+               <ReactPlayer
+                   playing
+                   muted
+                   height="300px"
+                   width="300px"
+                   url={remoteStream}
+               />
+               </>
+           )}
+           
+       </div>)
+       :(
+        <div className="flex flex-col items-center justify-center w-screen m-w-screen">
+          <h1 className="text-3xl font-bold mb-4">Error: You are not logged in</h1>
+          <p className="text-lg text-gray-600 mb-8">
+            Please log in to access this page.
+          </p>
+          <Link href="/" className="text-blue-500 hover:underline">
+            go to home page
+          </Link>
+        </div>
+      )}
       </div>
-
-      <div className="flex mt-8 space-x-4">
-        {myStream && (
-          <button
-            onClick={sendStreams}
-            className="bg-green-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Send Stream
-          </button>
-        )}
-        {remoteSocketId && (
-          <button
-            onClick={handleCallUser}
-            className="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            CALL
-          </button>
-        )}
-      </div>
-    </div>
+        
     )
 }
