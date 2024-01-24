@@ -5,13 +5,14 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { getDatabase, ref, push, set, onValue } from "firebase/database";
 import { useRouter } from "next/navigation";
+import Loader from "@/Components/Loader";
 
 const Query = () => {
   const [post, setPost] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
 
   const router = useRouter();
 
@@ -36,7 +37,29 @@ const Query = () => {
           ...data[id],
         });
       }
-      setPosts(loadedPosts);
+      
+      const loaded_posts = loadedPosts.map((post) => (
+        <section key={post.id}>
+          <div className="font-pop shadow-lg border-2 border-gray-200 w-full p-4 mb-4 flex flex-row gap-4">
+            <img
+              className="rounded-full h-12 w-12"
+              src={post.image}
+              alt={post.username}
+            />
+
+            <div>
+              <h2 className="text-blue-800 text-sm">{post.username}</h2>
+              <p>{post.post}</p>
+              <div className="flex flex-row justify-center items-center gap-4">
+                {/* <input className="border-2 border-gray-300 h-6 w-[400px] mt-2" /> <button className="h-6 w-20 flex justify-center items-center text-xs ">Comment</button>  */}
+              </div>
+            </div>
+          </div>
+          <div></div>
+        </section>
+      ))
+
+      setPosts(loaded_posts);
     });
   }, []);
 
@@ -115,26 +138,16 @@ const Query = () => {
         </div>
 
         <div>
-          {posts?.map((post) => (
-            <section key={post.id}>
-              <div className="font-pop shadow-lg border-2 border-gray-200 w-full p-4 mb-4 flex flex-row gap-4">
-                <img
-                  className="rounded-full h-12 w-12"
-                  src={post.image}
-                  alt={post.username}
-                />
-
-                <div>
-                  <h2 className="text-blue-800 text-sm">{post.username}</h2>
-                  <p>{post.post}</p>
-                  <div className="flex flex-row justify-center items-center gap-4">
-                    {/* <input className="border-2 border-gray-300 h-6 w-[400px] mt-2" /> <button className="h-6 w-20 flex justify-center items-center text-xs ">Comment</button>  */}
-                  </div>
-                </div>
-              </div>
-              <div></div>
-            </section>
-          ))}
+          { !posts ?
+          
+           <Loader/>
+          
+          :
+           <div>
+             {posts}
+            </div>
+         
+           }
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 import Features from "@/Components/Features";
 import Footer from "@/Components/Footer";
 import Hero from "@/Components/Hero";
+import Loader from "@/Components/Loader";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -15,6 +16,7 @@ const router = useRouter();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between ">
+       
       <Hero/>
       <Features/>
       <Footer/>

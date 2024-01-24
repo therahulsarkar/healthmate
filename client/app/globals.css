@@ -16,8 +16,9 @@
   }
 }
 
-body {
+body,html{
   background-color: #fff;
+ 
 }
 
 @layer utilities {
@@ -331,5 +332,10 @@ button:hover {
   /* Query */
 
   .width-full{
-    width:100vw;
+    overflow: hidden;
+    width:100%;
   }
+
+
+
+  
