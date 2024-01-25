@@ -17,7 +17,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable}  ${poppins.variable}`}>
         <Navbar/>
-        {children}</body>
+        {children}
+        </body>
     </html>
     </SocketProvider>
   );

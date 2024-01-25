@@ -8,7 +8,9 @@ import "./load.css"
 const Loader = () =>{
 
    useEffect(()=>{
-
+      window.scrollTo({
+         top: 0,
+       });
       document.body.style.overflow = "hidden";
 
       return () =>{

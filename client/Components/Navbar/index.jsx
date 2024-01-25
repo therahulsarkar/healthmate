@@ -62,7 +62,7 @@ const logout = async () => {
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
           <div className=" w-full px-4">
-            <a href="/#" className="block w-full py-5 font-pop text-2xl px-4 font-semibold text-blue-800">
+            <a href="/" className="block w-full py-5 font-pop text-2xl px-4 font-semibold text-blue-800">
     Health Mate
             </a>
           </div>

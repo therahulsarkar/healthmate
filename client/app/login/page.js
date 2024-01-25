@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import firebase_app from "../../firebase";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import CryptoJS from 'crypto-js';
+import Footer from "@/Components/Footer";
 
 const Login = () => {
 
@@ -73,7 +74,7 @@ async function googleSignIn() {
 
   return (
     <section
-      className="bg-cover bg-no-repeat bg-center w-full"
+      className="bg-cover bg-no-repeat bg-center w-full "
     >
      
       <Toaster position="top-center" />
@@ -124,6 +125,7 @@ async function googleSignIn() {
           </div>
         </div>
       </div>
+      <Footer/>
     </section>
   );
 };

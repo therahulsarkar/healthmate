@@ -332,7 +332,7 @@ button:hover {
   /* Query */
 
   .width-full{
-    overflow: hidden;
+    margin-top: 5%;
     width:100%;
   }
 

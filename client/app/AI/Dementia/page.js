@@ -179,55 +179,7 @@ const App = () => {
         <h2 id="load" className="text-blue-600 font-pop">Loading....</h2>
       </div>
     </div>
-    <div className="disclaimer font-pop">
-
-      <p>
-
-Disclaimer:
-
-The predictions provided by this Alzheimer's prediction model are based on a machine learning algorithm trained on a limited dataset. It is essential to understand that the model's accuracy and reliability may vary, and the predictions should not be considered as a definitive diagnosis.</p>
-    <p>For queries contact <a  href="mailto:therahulsarkar@gmail.com"> Rahul</a></p>
-    </div>
-    <div className="info font-pop">
-    <table>
-        <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>M/F</td>
-            <td>Gender: 0 for Female, 1 for Male</td>
-        </tr>
-        <tr>
-            <td>Age</td>
-            <td>Age of the individual</td>
-        </tr>
-        <tr>
-            <td>EDUC</td>
-            <td>Years of Education</td>
-        </tr>
-        <tr>
-            <td>SES</td>
-            <td>Socioeconomic status as assessed by the Hollingshead Index of Social Position and classified into categories from 1 (highest status) to 5 (lowest status)</td>
-        </tr>
-        <tr>
-            <td>MMSE</td>
-            <td>Mini-Mental State Examination score (range is from 0 [worst] to 30 [best]) (Folstein, Folstein, & McHugh, 1975)</td>
-        </tr>
-        <tr>
-            <td>eTIV</td>
-            <td>Estimated Total Intracranial Volume</td>
-        </tr>
-        <tr>
-            <td>nWBV</td>
-            <td>Normalized Whole Brain Volume</td>
-        </tr>
-        <tr>
-            <td>ASF</td>
-            <td>Atlas Scaling Factor</td>
-        </tr>
-    </table>
-    </div>
+  
     </div>
       :
       <Loader/>
