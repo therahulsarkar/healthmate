@@ -2,9 +2,18 @@
 import React, { useState,useEffect } from 'react';
 import CryptoJS from 'crypto-js';
 import { useRouter } from "next/navigation";
+import Loader from '@/Components/Loader';
 // import logo from './assets/logo.png'
 const App = () => {
   const router = useRouter();
+  const [loaded,setLoad] = useState(null);
+  useEffect(()=>{
+    setTimeout(()=>{
+ 
+      setLoad(true)
+       
+    },600);
+  })
   useEffect(() => {
     const ciphertext = localStorage.getItem("user");
     if (ciphertext) {
@@ -119,11 +128,14 @@ const App = () => {
   };
 
   return (
-  <div>
+    <>
+    {
+      loaded?
+      <div>
     
    
       <div className = "w-screen flex justify-center item-center textcenter mt-[90px]">
-      <p className='text-blue-600 text-4xl  font-pop'>Empowering Tomorrow: Your Ally in Alzheimer's Prediction and Prevention.</p>
+      <p className='text-blue-600 text-4xl  font-pop'>Alzheimer's Prediction and Prevention.</p>
 
       </div>
     <div className="prediction-container font-pop">
@@ -169,6 +181,11 @@ const App = () => {
     </div>
   
     </div>
+      :
+      <Loader/>
+    }
+    </>
+  
   );
 };
 

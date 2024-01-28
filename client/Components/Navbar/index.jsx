@@ -5,13 +5,18 @@ import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import firebase_app from "../../firebase";
 import Link from "next/link";
+import Loader from "../Loader";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
-
+  
+  const userAuth = localStorage.getItem('auth');
 const auth = getAuth(firebase_app);
 
 const router = useRouter();
+
+
+
 
 useEffect(() => {
   
@@ -24,8 +29,10 @@ const logout = async () => {
     console.log("logging out")
     await signOut(auth);
     localStorage.removeItem('user');
+    localStorage.removeItem('auth');
+    window.location.href="/"
     setUser(null);
-    return router.push('/')
+   
   } catch (error) {
     console.error('Error signing out: ', error);
   }
@@ -33,7 +40,9 @@ const logout = async () => {
 
   useEffect(() => {
     const ciphertext = localStorage.getItem('user');
-
+    
+    console.log(userAuth)
+    
    
     console.log(ciphertext)
     if (ciphertext) {
@@ -47,6 +56,8 @@ const logout = async () => {
   }, []);
 
   return (
+    <>
+    
     <header className={`absolute left-0 top-0 z-20 flex w-full items-center  shadow-lg shadow-blue-100`}>
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
@@ -60,13 +71,15 @@ const logout = async () => {
             </div>
             <div className=" sm:flex lg:pr-0">
              
-            {user && user.uid ? <div className="font-pop flex flex-row justify-center items-center gap-2">Welcome, {user?.name}
+            {user ? <div className="font-pop flex flex-row justify-center items-center gap-2">Welcome, {user?.name}
             <img className="rounded-full w-8 h-8" src={user?.img}/>
             
             <div onClick={logout} className="flex gap-1  flex-row bg-gradient-to-r from-blue-700 via-sky-600 to-sky-700 text-white p-1 justify-center items-center rounded-full px-2 cursor-pointer">Logout
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M312 372c-7.7 0-14 6.3-14 14 0 9.9-8.1 18-18 18H94c-9.9 0-18-8.1-18-18V126c0-9.9 8.1-18 18-18h186c9.9 0 18 8.1 18 18 0 7.7 6.3 14 14 14s14-6.3 14-14c0-25.4-20.6-46-46-46H94c-25.4 0-46 20.6-46 46v260c0 25.4 20.6 46 46 46h186c25.4 0 46-20.6 46-46 0-7.7-6.3-14-14-14z" fill="#fff"/><path d="M372.9 158.1c-2.6-2.6-6.1-4.1-9.9-4.1-3.7 0-7.3 1.4-9.9 4.1-5.5 5.5-5.5 14.3 0 19.8l65.2 64.2H162c-7.7 0-14 6.3-14 14s6.3 14 14 14h256.6L355 334.2c-5.4 5.4-5.4 14.3 0 19.8l.1.1c2.7 2.5 6.2 3.9 9.8 3.9 3.8 0 7.3-1.4 9.9-4.1l82.6-82.4c4.3-4.3 6.5-9.3 6.5-14.7 0-5.3-2.3-10.3-6.5-14.5l-84.5-84.2z" fill="#fff"/></svg>
             </div>
-            </div> : <Link
+            </div>
+              :
+              <Link
                 href="/login"
                 className="px-7 flex flex-row justify-center items-center py-1 gap-2 text-white rounded-full bg-gradient-to-r from-blue-700 via-sky-600 to-sky-700 text-base font-medium text-dark hover:text-primary "
               >
@@ -78,6 +91,7 @@ const logout = async () => {
         </div>
       </div>
     </header>
+    </>
   );
 };
 

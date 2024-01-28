@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react'
 import axios from "axios"
 import CryptoJS from 'crypto-js';
 import { useRouter } from "next/navigation";
+import Loader from '@/Components/Loader';
 const Diabetes = () => {
   
   const [Result, setResult] = useState({})
@@ -20,6 +21,15 @@ const Diabetes = () => {
   const url = "https://diabetes-api-j3ba.onrender.com/api"
   
   const router = useRouter();
+
+  const [loaded,setLoad] = useState(null);
+  useEffect(()=>{
+    setTimeout(()=>{
+ 
+      setLoad(true)
+       
+    },600);
+  })
   useEffect(() => {
    
     const ciphertext = localStorage.getItem("user");
@@ -100,8 +110,9 @@ const Diabetes = () => {
 
   return (
 <>
-
-    <div className='max-w-full w-screen flex justify-center items-center font-pop bg-slate-100'>
+{
+  loaded?
+  <div className='max-w-full w-screen flex justify-center items-center font-pop bg-slate-100'>
       <div className='max-w-full  font-bold mt-[100px] rounded-2xl shadow-xl bg-white  mb-10'>
         <h1 className='font-semibold text-blue-700 text-4xl text-center m-10'>Diabetes Detection</h1>
         <div className='flex gap-4 '>
@@ -186,6 +197,11 @@ const Diabetes = () => {
 
       </div>
     </div>
+  :
+  <Loader/>
+}
+
+    
     </>
   )
 }

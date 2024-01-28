@@ -1,0 +1,27 @@
+.comments_box{
+    width:60%;
+    
+}
+
+.comment_head{
+    display:flex;
+    gap:2%;
+}
+
+.text-size{
+    width:400px;
+}
+
+.replies{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reply_bar{
+    display: none;
+}
+
+.reply_butts{
+    display: flex;
+}
