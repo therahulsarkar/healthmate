@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.5",
+    "@mui/material": "^5.16.5",
     "axios": "^1.6.5",
     "crypto-js": "^4.2.0",
     "firebase": "^10.7.2",
