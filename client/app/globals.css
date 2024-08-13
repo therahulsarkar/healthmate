@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,8 +18,9 @@
   }
 }
 
-body {
+body,html{
   background-color: #fff;
+ 
 }
 
 @layer utilities {
@@ -331,5 +334,10 @@ button:hover {
   /* Query */
 
   .width-full{
-    width:100vw;
+    margin-top: 5%;
+    width:100%;
   }
+
+
+
+  

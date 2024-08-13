@@ -1,10 +1,24 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import Loader from "../Loader";
+import CryptoJS from "crypto-js";
+
+
+
 
 const Hero = () => {
+  const [loaded,setLoad] = useState(null);
+  useEffect(()=>{
+    setTimeout(()=>{
+ 
+      setLoad(true)
+       
+    },600);
+  })
   return (
     <>
-
+     {
+      loaded?
       <div className="relative bg-white pb-[110px] pt-[120px] dark:bg-dark lg:pt-[150px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -36,8 +50,13 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      :
+      <Loader/>
+    }
     </>
+
   );
+     
 };
 
 export default Hero;
